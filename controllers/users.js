@@ -1,6 +1,8 @@
 const usersRouter = require('express').Router()
+require('express-async-errors');
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
+const ValidationError = require("mongoose");
 
 usersRouter.post('/', async (request, response, next)  => {
     const body = request.body
@@ -16,9 +18,14 @@ usersRouter.post('/', async (request, response, next)  => {
         name: body.name,
         password: passwordHash,
     })
-
     const userSave = await user.save()
     response.json(userSave)
+    // try {
+    //
+    // } catch (e) {
+    //     throw ValidationError("test")
+    // }
+
 })
 
 usersRouter.get('/', async (request, response) => {

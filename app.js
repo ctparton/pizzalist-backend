@@ -4,6 +4,9 @@ const logger = require('./utils/logger')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const userRouter = require('./controllers/users')
+const pizzaRouter = require('./controllers/pizzas')
+const loginRouter = require('./controllers/login')
+const opencageRouter = require('./controllers/opencage')
 const config = require('./utils/config.js')
 const customMiddleware = require('./utils/middleware')
 
@@ -17,6 +20,9 @@ app.use(cors())
 app.use(express.json())
 app.use(customMiddleware.tokenValidator)
 app.use('/api/users', userRouter)
+app.use('/api/pizzas', pizzaRouter)
+app.use('/api/login', loginRouter)
+app.use('/api/opencage', opencageRouter)
 
 
 if (process.env.NODE_ENV === 'test') {

@@ -11,8 +11,10 @@ const pizzaSchema = mongoose.Schema({
         { type: String}
     ],
     rating: Number,
-    rated_by: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
-})
+    created_by: {type: mongoose.Schema.Types.ObjectId},
+    rated_by: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+
+}, {timestamps: { createdAt: 'created_at' }})
 
 pizzaSchema.set('toJSON', {
     transform: (document, returnedObject) => {
